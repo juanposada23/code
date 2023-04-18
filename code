@@ -1,0 +1,61 @@
+[4:12 p. m., 17/4/2023] Juan José: SELECT 
+  CONCAT(
+    SPLIT_PART(nombre_completo, ' ', 1),
+    ' ',
+    CASE 
+      WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 2 
+      THEN CONCAT(
+        SPLIT_PART(nombre_completo, ' ', 4), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 2), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 5)
+      )
+      WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 3 
+      THEN CONCAT(
+        SPLIT_PART(nombre_completo, ' ', 4), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 2), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 5), 
+        ' ', 
+        SPLI…
+[4:36 p. m., 17/4/2023] Juan José: SELECT 
+  CONCAT(
+    SPLIT_PART(nombre_completo, ' ', 1),
+    ' ',
+    CASE 
+      WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 2 
+      THEN CONCAT(
+        SPLIT_PART(nombre_completo, ' ', 4), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 2), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 5)
+      )
+      WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 3 
+      THEN CONCAT(
+        SPLIT_PART(nombre_completo, ' ', 4), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 2), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 5), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 6)
+      )
+      ELSE CONCAT(
+        SPLIT_PART(nombre_completo, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_completo, ' ', 2)
+      )
+    END
+  ) AS nombre_completo_modificado
+FROM empleados;
