@@ -55,3 +55,30 @@ CASE
 END as nombre_persona_X,
 nombre_empleado
 FROM resultados_conciliacion_con_clientes.dim_empleados
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+THEN CONCAT(
+        SPLIT_PART(nombre_empleado, ' ', 4),
+        ' ',
+        CASE
+            WHEN SPLIT_PART(nombre_empleado, ' ', 3) IN ('DE', 'DEL', 'LA', 'LOS', 'LAS')
+            THEN CONCAT(SPLIT_PART(nombre_empleado, ' ', 3), ' ', SPLIT_PART(nombre_empleado, ' ', 2))
+            ELSE SPLIT_PART(nombre_empleado, ' ', 3)
+        END,
+        ' ',
+        SPLIT_PART(nombre_empleado, ' ', 1),
+        ' ',
+        SPLIT_PART(nombre_empleado, ' ', 2)
+    )
