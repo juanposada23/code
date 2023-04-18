@@ -22,3 +22,36 @@ CASE
     end as nombre_perosna_X,
     nombre_empleado
     from resultados_conciliacion_con_clientes.dim_empleados;
+    
+    
+    ------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    SELECT
+CASE
+    WHEN LENGTH(nombre_empleado) - LENGTH(REPLACE(nombre_empleado,' ','')) = 2
+    THEN CONCAT(
+        CASE 
+            WHEN SPLIT_PART(nombre_empleado, ' ', 3) IN ('DE', 'DEL', 'LA', 'LOS', 'LAS') 
+            THEN CONCAT(SPLIT_PART(nombre_empleado, ' ', 3), ' ', SPLIT_PART(nombre_empleado, ' ', 2), ' ', SPLIT_PART(nombre_empleado, ' ', 1))
+            ELSE CONCAT(SPLIT_PART(nombre_empleado, ' ', 3), ' ', SPLIT_PART(nombre_empleado, ' ', 1), ' ', SPLIT_PART(nombre_empleado, ' ', 2))
+        END
+    ,
+        ' ',
+        CASE 
+            WHEN SPLIT_PART(nombre_empleado, ' ', 3) IN ('DE', 'DEL', 'LA', 'LOS', 'LAS') 
+            THEN SPLIT_PART(nombre_empleado, ' ', 4)
+            ELSE SPLIT_PART(nombre_empleado, ' ', 3)
+        END
+    )
+    WHEN LENGTH(nombre_empleado) - LENGTH(REPLACE(nombre_empleado,' ','')) = 3
+    THEN CONCAT(
+        CASE 
+            WHEN SPLIT_PART(nombre_empleado, ' ', 4) IN ('DE', 'DEL', 'LA', 'LOS', 'LAS') 
+            THEN CONCAT(SPLIT_PART(nombre_empleado, ' ', 4), ' ', SPLIT_PART(nombre_empleado, ' ', 3), ' ', SPLIT_PART(nombre_empleado, ' ', 1), ' ', SPLIT_PART(nombre_empleado, ' ', 2))
+            ELSE CONCAT(SPLIT_PART(nombre_empleado, ' ', 3), ' ', SPLIT_PART(nombre_empleado, ' ', 4), ' ', SPLIT_PART(nombre_empleado, ' ', 1), ' ', SPLIT_PART(nombre_empleado, ' ', 2))
+        END
+    )
+END as nombre_persona_X,
+nombre_empleado
+FROM resultados_conciliacion_con_clientes.dim_empleados
