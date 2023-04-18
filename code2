@@ -1,0 +1,24 @@
+
+SELECT
+CASE
+    WHEN LENGTH(nombre_empleado) - LENGTH(REPLACE(nombre_empleado,' ','')) = 2
+    THEN CONCAT(
+        SPLIT_PART(nombre_empleado, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_empleado, ' ', 1), 
+        ' ', 
+        SPLIT_PART(nombre_empleado, ' ', 2)
+    )
+    WHEN LENGTH(nombre_empleado) - LENGTH(REPLACE(nombre_empleado,' ','')) = 3
+    THEN CONCAT(
+        SPLIT_PART(nombre_empleado, ' ', 3), 
+        ' ', 
+        SPLIT_PART(nombre_empleado, ' ', 4), 
+        ' ', 
+        SPLIT_PART(nombre_empleado, ' ', 1),
+        ' ',
+        SPLIT_PART(nombre_empleado, ' ', 2)
+    )
+    end as nombre_perosna_X,
+    nombre_empleado
+    from resultados_conciliacion_con_clientes.dim_empleados;
