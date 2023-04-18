@@ -59,3 +59,35 @@
     END
   ) AS nombre_completo_modificado
 FROM empleados;
+
+
+
+
+SELECT
+CONCAT(
+SPLIT_PART(nombre_completo, ' ', 1),
+' ',
+CASE
+WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 2
+THEN CONCAT(
+SPLIT_PART(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, ' de', ' de '), ' del', ' del '), ' la', ' la '), ' las', ' las '), ' los', ' los '), ' y', ' y '), ' i', ' i '), 'di', 'di '), 'da', 'da '), 'van', 'van '), 'von', 'von '), ' de la', ' de la '), ' de las', ' de las '), ' de los', ' de los '), ' ',
+SPLIT_PART(nombre_completo, ' ', 3),
+' ',
+SPLIT_PART(nombre_completo, ' ', 2),
+' ',
+SPLIT_PART(nombre_completo, ' ', 5)
+)
+WHEN LENGTH(nombre_completo) - LENGTH(REPLACE(nombre_completo, ' ', '')) = 3
+THEN CONCAT(
+SPLIT_PART(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_completo, ' de', ' de '), ' del', ' del '), ' la', ' la '), ' las', ' las '), ' los', ' los '), ' y', ' y '), ' i', ' i '), 'di', 'di '), 'da', 'da '), 'van', 'van '), 'von', 'von '), ' de la', ' de la '), ' de las', ' de las '), ' de los', ' de los '), ' ',
+SPLIT_PART(nombre_completo, ' ', 3),
+' ',
+SPLIT_PART(nombre_completo, ' ', 2),
+' ',
+SPLIT_PART(nombre_completo, ' ', 5),
+' ',
+SPLIT_PART(nombre_completo, ' ', 6)
+)
+
+
+
